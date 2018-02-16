@@ -69,7 +69,24 @@
                             <outlet property="delegate" destination="EKE-cg-SES" id="C1Y-KM-8ja"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Zrw-DP-v4y"/>
+                    <navigationItem key="navigationItem" id="Zrw-DP-v4y">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="RmB-3D-6jc">
+                            <rect key="frame" x="20" y="6" width="335" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Title"/>
+                                <segment title="Director"/>
+                                <segment title="Production Year"/>
+                            </segments>
+                            <connections>
+                                <action selector="sortedByValueChanged:" destination="EKE-cg-SES" eventType="valueChanged" id="ULu-mM-cSQ"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="sortBySegmentedController" destination="RmB-3D-6jc" id="uaa-sm-6H2"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wNp-TC-x63" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
