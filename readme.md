@@ -1,0 +1,29 @@
+The core challenge in itself is quite simple, grab a JSON, parse it, show the parsed objects in a table view. The wording of the challenge suggests that *location* is more important than the *movie*. We could think then about two different entities, a `location` and then, a set of `movie`s played at that venue. We could then think about the structure of the graph as a set of `location`s which, in themselves, are the root of a subgraph composed by them and the movies. Nothing really special there. We could model that with types supporting `NSCoding`. But, since one of the bonuses of the challenge was to preserve the graph with core data, we could model that with two entities related as one-to-many (from one location to many movies).
+
+I was actually modeling all of this with Core Data, but then, in the spirit of “let’s move on, I want an MVP in a few hours” spirit, I simplified the model. After all, by sorting items by location, I can present all their movies in a block. Is not so fancy as coalescing all movies into one location, show the location, and then, in a detail view controller, show all the movies. But it should work. I’ve decided to have just one entity, `Film`, and use it to hold the location information. I will discuss the details later. 
+
+So, we have the basic structure of the graph. Now, we need to, somehow, grab the data. I’ve told that all cool kids are using [Alamofire](https://github.com/Alamofire/Alamofire), which, don’t get me wrong, is awesome. But I was about to perform just one `GET`. A full library to do that is kinda expensive. Now, I know what you are thinking “‘Alamofire’ would be too much, and yet you manage to write 4 files to perform just one `GET`”. And you might be right. But you know, singletons are not such a good idea and is always nice to be able to test the code. That’s why I am adding the `NetworkSession` protocol. Then I’m extending `URLSession` to comply with it. The protocol in itself is quite simple, is just a method that will run the task with the request we are passing to it. And by the task, I mean a `URLSessionTask`, or just a single call (like I’m doing in a custom mock in the test). And that’s the reason for the session protocol. Then we have the `NetworkManager`. This is the piece of code that is actually called by the client to retrieve the information. And is initialized with a `NetworkSession`. We default to the `shared` singleton of `URLSession`, but we can easily change it either to retrieve data from, let’s say, disk, or to mock behavior in tests. 
+
+Cool, we have a data graph, and a network layer to grab the JSON. Wouldn’t be awesome to use `codable` on top of core data to parse the JSON? Yes, it would be great, but, unfortunately, that's not easy with the structure of the incoming JSON. Instead of a hash table, we have an array. So it’s plain old `JSONSerialization` to do the job. And then, to create the actual instances of the model, I’ve created yet another protocol `ManagedObject`, which basically contains a helper `find-or-create`. Then, I’ve made `Film` to comply with it, and added the more interesting `insertInBulk`. Given the data that we are handling, it shouldn’t be a problem for any iOS to parse everything at once. But just in case, I’m batching the input. 
+
+Since I don’t know if the input is updated over time, I’ve tried to play it safe. I’m querying the store to check if we already have the movie (details following). The location is updated later (to accommodate films that move from one theater to other). And the films themselves have a `lastTouched` param to delete all the movies not touched in the last run (movies that we had in local store but were not found in the incoming data). 
+
+Haven’t said I was coding just an MVP? And shouldn’t be a list of movies, grouped by location (and also sortable by other attributes, like name and director) be good enough for an MVP? Well, kinda, but it was not really demanding. 
+
+So, we have two apps: 
+
+* coalesced_theaters
+ 
+https://github.com/volonbolon/bookish-dollop/tree/coalesced_theaters
+
+So, I went back to coalescing. But this time, instead of group theaters under location, and since the only thing we actually have about the location is the address (or the name), I’m simplifying the whole thing, by grouping all the available theaters for a movie into a single string, and exploding it whenever we need to look into each location (ie, when importing, to make sure we clean old locations, and hold just the new ones, and when showing them on the map). The parsing was not hard at all. The problem was how to reference the addresses in a batch. `CLGeocoder` does not support such thing. It looks like Google Maps API do support it, but I end up hacking `CLGeocoder` just for the sake of it. On a production app, I would argue against this kind of things. But being just a toy app, it was funny. 
+
+* single_theaters
+
+https://github.com/volonbolon/bookish-dollop/tree/single_theaters
+
+The actual MVP. Locations are just a field in theater and you can sort by them. When loading the map is just one location we tried to pin on it. 
+
+Regarding `CLGeocoder` and the location input, there are tons of items with a nulled location, or bogus locations, or even building names that the system is not recognizing. For a production app, I would argue to clean the data (and even geo-reference the locations offline). This is also hitting the section titles when tried to group the table by location names. I’ve should try to sanitize the input, but, at the end, I was running out of time, and chose to use a plain table instead. 
+
+Things to do, testing, UX, profiling.
