@@ -87,7 +87,7 @@ extension FilmsTableViewController { // Helpers
 
         // We need to clean the cache, otherwise, fetchedResultsController
         // will fail to retrieve the correct object
-        NSFetchedResultsController<Film>.deleteCache(withName: cacheName)
+        NSFetchedResultsController<Film>.deleteCache(withName: nil)
 
         // If the AppDelegate is not `appDelegate` then, we have a real problem.
         // Let's crash inmediatly
