@@ -21,6 +21,8 @@
 		B018B2AC20370AB1007C2F3C /* FilmsTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2AB20370AB1007C2F3C /* FilmsTableTableViewController.swift */; };
 		B018B2AE20370B64007C2F3C /* MapViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2AD20370B64007C2F3C /* MapViewViewController.swift */; };
 		B018B2B120370B9C007C2F3C /* FilmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2B020370B9C007C2F3C /* FilmTableViewCell.swift */; };
+		B018B2B82037105A007C2F3C /* Film+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2B62037105A007C2F3C /* Film+CoreDataClass.swift */; };
+		B018B2B92037105A007C2F3C /* Film+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2B72037105A007C2F3C /* Film+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		B018B2AB20370AB1007C2F3C /* FilmsTableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsTableTableViewController.swift; sourceTree = "<group>"; };
 		B018B2AD20370B64007C2F3C /* MapViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewViewController.swift; sourceTree = "<group>"; };
 		B018B2B020370B9C007C2F3C /* FilmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmTableViewCell.swift; sourceTree = "<group>"; };
+		B018B2B62037105A007C2F3C /* Film+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Film+CoreDataClass.swift"; path = "BookishDollop/Models/Film+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B018B2B72037105A007C2F3C /* Film+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Film+CoreDataProperties.swift"; path = "BookishDollop/Models/Film+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,8 @@
 		B018B26F2036FFA2007C2F3C = {
 			isa = PBXGroup;
 			children = (
+				B018B2B62037105A007C2F3C /* Film+CoreDataClass.swift */,
+				B018B2B72037105A007C2F3C /* Film+CoreDataProperties.swift */,
 				B018B27A2036FFA2007C2F3C /* BookishDollop */,
 				B018B2922036FFA2007C2F3C /* BookishDollopTests */,
 				B018B2792036FFA2007C2F3C /* Products */,
@@ -271,10 +277,12 @@
 				B018B2A52037035B007C2F3C /* URL+Helpers.swift in Sources */,
 				B018B27E2036FFA2007C2F3C /* ViewController.swift in Sources */,
 				B018B2A72037054B007C2F3C /* NetworkManager.swift in Sources */,
+				B018B2B82037105A007C2F3C /* Film+CoreDataClass.swift in Sources */,
 				B018B27C2036FFA2007C2F3C /* AppDelegate.swift in Sources */,
 				B018B2A1203700AD007C2F3C /* URLSession+NetworkInterface.swift in Sources */,
 				B018B2A3203700C8007C2F3C /* Either.swift in Sources */,
 				B018B2B120370B9C007C2F3C /* FilmTableViewCell.swift in Sources */,
+				B018B2B92037105A007C2F3C /* Film+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
