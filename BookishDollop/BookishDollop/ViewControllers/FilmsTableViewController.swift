@@ -119,6 +119,7 @@ extension FilmsTableViewController { // Helpers
                     DispatchQueue.main.async {
                         if success {
                             do {
+                                NSFetchedResultsController<Film>.deleteCache(withName: nil)
                                 try self.fetchedResultsController.performFetch()
                                 self.tableView.reloadData()
                             } catch {
