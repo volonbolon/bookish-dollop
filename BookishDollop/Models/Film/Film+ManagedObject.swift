@@ -83,9 +83,6 @@ extension Film { // MARK: - Insert extension
         var success = false
         context.performAndWait {
             for rawFilm in batch {
-//                guard let title = rawFilm[FilmConstants.titleIndex] as? String, let director = rawFilm[FilmConstants.directorIndex] as? String else {
-//                    return // Early exit if we cannot find the director and the title
-//                }
                 guard let filmID = rawFilm[FilmConstants.filmIDIndex] as? String else {
                     return // Early exit if we cannot find the director and the title
                 }
