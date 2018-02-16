@@ -20,11 +20,11 @@
 		B018B2AC20370AB1007C2F3C /* FilmsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2AB20370AB1007C2F3C /* FilmsTableViewController.swift */; };
 		B018B2AE20370B64007C2F3C /* MapViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2AD20370B64007C2F3C /* MapViewViewController.swift */; };
 		B018B2B120370B9C007C2F3C /* FilmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2B020370B9C007C2F3C /* FilmTableViewCell.swift */; };
-		B018B2B82037105A007C2F3C /* Film+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2B62037105A007C2F3C /* Film+CoreDataClass.swift */; };
-		B018B2B92037105A007C2F3C /* Film+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2B72037105A007C2F3C /* Film+CoreDataProperties.swift */; };
 		B018B2BD20371138007C2F3C /* NSManagedObjectContext+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2BC20371138007C2F3C /* NSManagedObjectContext+Helpers.swift */; };
 		B018B2BF20371171007C2F3C /* ManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2BE20371171007C2F3C /* ManagedObject.swift */; };
 		B018B2C220371619007C2F3C /* Film+ManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2C120371619007C2F3C /* Film+ManagedObject.swift */; };
+		B018B2C920374D9B007C2F3C /* Film+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2C720374D9B007C2F3C /* Film+CoreDataClass.swift */; };
+		B018B2CA20374D9B007C2F3C /* Film+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2C820374D9B007C2F3C /* Film+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,11 +55,11 @@
 		B018B2AB20370AB1007C2F3C /* FilmsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsTableViewController.swift; sourceTree = "<group>"; };
 		B018B2AD20370B64007C2F3C /* MapViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewViewController.swift; sourceTree = "<group>"; };
 		B018B2B020370B9C007C2F3C /* FilmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmTableViewCell.swift; sourceTree = "<group>"; };
-		B018B2B62037105A007C2F3C /* Film+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Film+CoreDataClass.swift"; sourceTree = "<group>"; };
-		B018B2B72037105A007C2F3C /* Film+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Film+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B018B2BC20371138007C2F3C /* NSManagedObjectContext+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Helpers.swift"; sourceTree = "<group>"; };
 		B018B2BE20371171007C2F3C /* ManagedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedObject.swift; sourceTree = "<group>"; };
 		B018B2C120371619007C2F3C /* Film+ManagedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Film+ManagedObject.swift"; sourceTree = "<group>"; };
+		B018B2C720374D9B007C2F3C /* Film+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Film+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B018B2C820374D9B007C2F3C /* Film+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Film+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,8 +174,8 @@
 		B018B2C020371600007C2F3C /* Film */ = {
 			isa = PBXGroup;
 			children = (
-				B018B2B62037105A007C2F3C /* Film+CoreDataClass.swift */,
-				B018B2B72037105A007C2F3C /* Film+CoreDataProperties.swift */,
+				B018B2C720374D9B007C2F3C /* Film+CoreDataClass.swift */,
+				B018B2C820374D9B007C2F3C /* Film+CoreDataProperties.swift */,
 				B018B2C120371619007C2F3C /* Film+ManagedObject.swift */,
 			);
 			path = Film;
@@ -309,13 +309,13 @@
 				B018B2842036FFA2007C2F3C /* BookishDollop.xcdatamodeld in Sources */,
 				B018B2A52037035B007C2F3C /* URL+Helpers.swift in Sources */,
 				B018B2A72037054B007C2F3C /* NetworkManager.swift in Sources */,
-				B018B2B82037105A007C2F3C /* Film+CoreDataClass.swift in Sources */,
 				B018B27C2036FFA2007C2F3C /* AppDelegate.swift in Sources */,
 				B018B2BD20371138007C2F3C /* NSManagedObjectContext+Helpers.swift in Sources */,
+				B018B2CA20374D9B007C2F3C /* Film+CoreDataProperties.swift in Sources */,
+				B018B2C920374D9B007C2F3C /* Film+CoreDataClass.swift in Sources */,
 				B018B2A1203700AD007C2F3C /* URLSession+NetworkInterface.swift in Sources */,
 				B018B2A3203700C8007C2F3C /* Either.swift in Sources */,
 				B018B2B120370B9C007C2F3C /* FilmTableViewCell.swift in Sources */,
-				B018B2B92037105A007C2F3C /* Film+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

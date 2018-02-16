@@ -18,7 +18,8 @@ extension Film {
     @NSManaged public var cast: String?
     @NSManaged public var director: String?
     @NSManaged public var lastTouched: NSDate?
-    @NSManaged public var theaters: String?
+    @NSManaged public var location: String?
     @NSManaged public var title: String?
     @NSManaged public var year: String?
+    @NSManaged public var filmID: String?
 }

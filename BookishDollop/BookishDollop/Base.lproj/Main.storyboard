@@ -78,7 +78,7 @@
                             <segments>
                                 <segment title="Title"/>
                                 <segment title="Director"/>
-                                <segment title="Production Year"/>
+                                <segment title="Location"/>
                             </segments>
                             <connections>
                                 <action selector="sortedByValueChanged:" destination="EKE-cg-SES" eventType="valueChanged" id="ULu-mM-cSQ"/>

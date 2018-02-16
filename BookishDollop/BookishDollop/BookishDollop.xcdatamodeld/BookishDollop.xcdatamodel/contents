@@ -3,12 +3,13 @@
     <entity name="Film" representedClassName="Film" syncable="YES">
         <attribute name="cast" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="director" attributeType="String" syncable="YES"/>
+        <attribute name="filmID" attributeType="String" syncable="YES"/>
         <attribute name="lastTouched" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="theaters" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="year" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Film" positionX="-45" positionY="0" width="128" height="135"/>
+        <element name="Film" positionX="-45" positionY="0" width="128" height="150"/>
     </elements>
 </model>

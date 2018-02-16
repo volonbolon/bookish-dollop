@@ -13,7 +13,7 @@ class FilmsTableViewController: UITableViewController {
     enum SortBy: Int {
         case title
         case director
-        case yearOfProduction
+        case location
     }
 
     // MARK: - IBOutlets
@@ -59,9 +59,9 @@ class FilmsTableViewController: UITableViewController {
         if segueIdentifier == "ShowLocationsSegue" {
             if let selectedIndexPath = self.tableView.indexPathForSelectedRow {
                 let film = self.fetchedResultsController.object(at: selectedIndexPath)
-                let theaters = film.theaters?.components(separatedBy: "|") ?? [] // Some films dont have any associated location, like, "24 Hours on Craigslist"
+                let location = film.location
                 if let destinationViewController = segue.destination as? MapViewViewController {
-                    destinationViewController.locations = theaters
+                    destinationViewController.location = location
                     destinationViewController.title = film.title
                 }
             }
@@ -80,14 +80,18 @@ extension FilmsTableViewController { // Helpers
         case .title:
             cacheName = "title"
             fetchRequest = Film.sortedByTitleFetchRequest
-        case .yearOfProduction:
-            cacheName = "year"
-            fetchRequest = Film.sortedByProductionYearFetchRequest
+        case .location:
+            cacheName = "location"
+            fetchRequest = Film.sortedByLocationFetchRequest
         }
 
         // We need to clean the cache, otherwise, fetchedResultsController
         // will fail to retrieve the correct object
         NSFetchedResultsController<Film>.deleteCache(withName: cacheName)
+
+        NSFetchedResultsController<Film>.deleteCache(withName: "director")
+        NSFetchedResultsController<Film>.deleteCache(withName: "title")
+        NSFetchedResultsController<Film>.deleteCache(withName: "year")
 
         // If the AppDelegate is not `appDelegate` then, we have a real problem.
         // Let's crash inmediatly
@@ -149,7 +153,7 @@ extension FilmsTableViewController { // MARK: - UITableViewDatasource
         let film = self.fetchedResultsController.object(at: indexPath)
 
         cell.titleLabel.text = film.title
-        cell.additionalInformationLabel.text = film.director
+        cell.additionalInformationLabel.text = film.location
         cell.productionYearLabel.text = film.year
 
         return cell

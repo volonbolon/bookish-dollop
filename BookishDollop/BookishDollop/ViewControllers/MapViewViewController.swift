@@ -11,9 +11,8 @@ import CoreLocation
 import MapKit
 
 class MapViewViewController: UIViewController {
-    var locations: [String]!
+    var location: String?
     // MARK: - Privates
-    private var locationIndex = 0
     private var geocoder = CLGeocoder()
 
     // MARK: - IBOutlets
@@ -23,22 +22,19 @@ class MapViewViewController: UIViewController {
     // And much better would be some sort of API that allows bath geo locations.
     // I will investigate MapQuest and Google.
     private func geoLocateLocations() {
-        guard locationIndex < self.locations.count else {
-            self.mapView.showAnnotations(self.mapView.annotations, animated: true)
+        guard let locationString = self.location else {
             return
         }
-        let string = "\(locations[locationIndex]), San Francisco, California"
+        let string = "\(locationString), San Francisco, California"
         geocoder.geocodeAddressString(string) { [unowned self] (placemarks: [CLPlacemark]?, error: Error?) in
             guard error == nil else {
-                self.geoLocateLocations()
+                print(error!)
                 return
             }
             guard let placemark = placemarks?.first else {
-                self.geoLocateLocations()
                 return
             }
             guard let coordinate = placemark.location?.coordinate else {
-                self.geoLocateLocations()
                 return
             }
 
@@ -48,9 +44,8 @@ class MapViewViewController: UIViewController {
 
             self.mapView.addAnnotation(annotation)
 
-            self.geoLocateLocations()
+            self.mapView.showAnnotations(self.mapView.annotations, animated: true)
         }
-        self.locationIndex += 1
     }
 
     override func viewDidLoad() {

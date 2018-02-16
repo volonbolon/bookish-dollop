@@ -17,6 +17,7 @@ struct FilmConstants {
     static let directorIndex = 14
     static let releaseYearIndex = 9
     static let locationsIndex = 10
+    static let filmIDIndex = 1
 }
 
 extension Film: ManagedObject {
@@ -33,9 +34,9 @@ extension Film: ManagedObject {
         return Film.sortedFetchRequest
     }
 
-    static var sortedByProductionYearFetchRequest: NSFetchRequest<Film> {
+    static var sortedByLocationFetchRequest: NSFetchRequest<Film> {
         let request = NSFetchRequest<Film>(entityName: self.entityName)
-        let sortByYearOfProduction = NSSortDescriptor(key: "year", ascending: true)
+        let sortByYearOfProduction = NSSortDescriptor(key: "location", ascending: true)
         request.sortDescriptors = [sortByYearOfProduction]
         return request
     }
@@ -78,57 +79,34 @@ extension Film { // MARK: - Insert extension
         return success
     }
 
-    private func loadLocation(location: String) {
-        // Let's reset the theaters if they are old
-        if let lastTouched = self.lastTouched?.timeIntervalSinceNow.magnitude {
-            if lastTouched > 60 {
-                self.theaters = nil
-            }
-        }
-
-        var theaters: [String]
-
-        if let theatersString = self.theaters {
-            theaters = theatersString.components(separatedBy: "|")
-        } else {
-            theaters = []
-        }
-
-        if !theaters.contains(location) {
-            theaters.append(location)
-        }
-
-        let updatedTheaters = theaters.joined(separator: "|")
-
-        self.theaters = updatedTheaters
-    }
-
     private static func importBatch(batch: ArraySlice<[Any]>, context: NSManagedObjectContext) -> Bool {
         var success = false
         context.performAndWait {
             for rawFilm in batch {
-                guard let title = rawFilm[FilmConstants.titleIndex] as? String, let director = rawFilm[FilmConstants.directorIndex] as? String else {
+//                guard let title = rawFilm[FilmConstants.titleIndex] as? String, let director = rawFilm[FilmConstants.directorIndex] as? String else {
+//                    return // Early exit if we cannot find the director and the title
+//                }
+                guard let filmID = rawFilm[FilmConstants.filmIDIndex] as? String else {
                     return // Early exit if we cannot find the director and the title
                 }
-                let predicate = NSPredicate(format: "title LIKE %@ AND director LIKE %@", argumentArray: [title, director])
+                let predicate = NSPredicate(format: "filmID LIKE %@", argumentArray: [filmID])
 
                 // The configure block makes it a little convoluted.
                 // We just query Film to find or create a managed object
                 // If we get the object back, we just updated the `lastTouched` field
                 if let film = Film.findOrCreate(context: context, predicate: predicate, configure: { (managedObject: ManagedObject) in
                     if let film = managedObject as? Film {
-                        guard let year = rawFilm[FilmConstants.releaseYearIndex] as? String else {
+                        guard let year = rawFilm[FilmConstants.releaseYearIndex] as? String, let location = rawFilm[FilmConstants.locationsIndex] as? String, let title = rawFilm[FilmConstants.titleIndex] as? String, let director = rawFilm[FilmConstants.directorIndex] as? String else {
                             throw ManagedObjectError.illFormattedInput
                         }
+                        film.filmID = filmID
                         film.title = title
+                        film.location = location
                         film.director = director
                         film.year = year
                         film.lastTouched = Date.distantPast as NSDate
                     }
                 }) {
-                    if let location = rawFilm[FilmConstants.locationsIndex] as? String {
-                        film.loadLocation(location: location)
-                    }
                     film.lastTouched = Date() as NSDate
                 }
             }
