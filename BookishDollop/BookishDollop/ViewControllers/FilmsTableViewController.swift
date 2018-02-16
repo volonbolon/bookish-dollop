@@ -53,16 +53,20 @@ class FilmsTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let segueIdentifier = segue.identifier
+        if segueIdentifier == "ShowLocationsSegue" {
+            if let selectedIndexPath = self.tableView.indexPathForSelectedRow {
+                let film = self.fetchedResultsController.object(at: selectedIndexPath)
+                let theaters = film.theaters?.components(separatedBy: "|") ?? [] // Some films dont have any associated location, like, "24 Hours on Craigslist"
+                if let destinationViewController = segue.destination as? MapViewViewController {
+                    destinationViewController.locations = theaters
+                    destinationViewController.title = film.title
+                }
+            }
+        }
     }
-    */
-
 }
 
 extension FilmsTableViewController { // Helpers
