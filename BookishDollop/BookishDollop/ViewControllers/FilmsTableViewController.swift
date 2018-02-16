@@ -110,18 +110,22 @@ extension FilmsTableViewController { // Helpers
     func refreshDatabase(rawFilms: NetworkManager.RawFilms) {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             let container = appDelegate.persistentContainer
-            Film.insertInBulk(rawObjects: rawFilms, container: container, completionBlock: { (success: Bool) in
-                if success {
-                    do {
-                        try self.fetchedResultsController.performFetch()
-                        self.tableView.reloadData()
-                    } catch {
-                        let fetchError = error as NSError
-                        print("Unable to Perform Fetch Request")
-                        print("\(fetchError), \(fetchError.localizedDescription)")
+            DispatchQueue.global().async {
+                Film.insertInBulk(rawObjects: rawFilms, container: container, completionBlock: { (success: Bool) in
+                    DispatchQueue.main.async {
+                        if success {
+                            do {
+                                try self.fetchedResultsController.performFetch()
+                                self.tableView.reloadData()
+                            } catch {
+                                let fetchError = error as NSError
+                                print("Unable to Perform Fetch Request")
+                                print("\(fetchError), \(fetchError.localizedDescription)")
+                            }
+                        }
                     }
-                }
-            })
+                })
+            }
         }
     }
 }
