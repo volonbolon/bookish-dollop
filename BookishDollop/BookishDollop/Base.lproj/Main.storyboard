@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -59,6 +60,7 @@
                                     <outlet property="additionalInformationLabel" destination="160-fS-j0N" id="gLU-h3-Ugu"/>
                                     <outlet property="productionYearLabel" destination="rZV-El-Muz" id="ZP2-4o-VL7"/>
                                     <outlet property="titleLabel" destination="7HJ-J6-lP0" id="olH-YT-ows"/>
+                                    <segue destination="csp-in-YEd" kind="show" id="6n2-Qt-Ur5"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -72,6 +74,32 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wNp-TC-x63" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="794.39999999999998" y="124.58770614692655"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="S88-TR-JP6">
+            <objects>
+                <viewController id="csp-in-YEd" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qsm-Oz-AfU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DEK-Sb-uWH">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="DEK-Sb-uWH" firstAttribute="trailing" secondItem="esI-V2-YhB" secondAttribute="trailing" id="FLM-pp-78v"/>
+                            <constraint firstItem="DEK-Sb-uWH" firstAttribute="bottom" secondItem="esI-V2-YhB" secondAttribute="bottom" id="HsN-Ii-2At"/>
+                            <constraint firstItem="DEK-Sb-uWH" firstAttribute="top" secondItem="esI-V2-YhB" secondAttribute="top" id="IUY-X6-dhQ"/>
+                            <constraint firstItem="DEK-Sb-uWH" firstAttribute="leading" secondItem="esI-V2-YhB" secondAttribute="leading" id="JDj-Zv-GoR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="esI-V2-YhB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7U0-t8-0Jo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1520.8" y="124.58770614692655"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9Sg-um-cwQ">
