@@ -18,13 +18,48 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Bhy-eZ-UP0">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="Bhy-eZ-UP0" customClass="FilmTableViewCell" customModule="BookishDollop" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bhy-eZ-UP0" id="dRi-mF-Y0Y">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7HJ-J6-lP0">
+                                            <rect key="frame" x="16" y="11" width="43.5" height="21"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZV-El-Muz">
+                                            <rect key="frame" x="326" y="13.5" width="33" height="16"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="160-fS-j0N">
+                                            <rect key="frame" x="16" y="38" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="160-fS-j0N" secondAttribute="trailing" constant="8" id="6HH-aw-aG5"/>
+                                        <constraint firstItem="rZV-El-Muz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7HJ-J6-lP0" secondAttribute="trailing" constant="4" id="MfJ-Ki-DrF"/>
+                                        <constraint firstItem="160-fS-j0N" firstAttribute="leading" secondItem="7HJ-J6-lP0" secondAttribute="leading" id="Uut-uS-XfY"/>
+                                        <constraint firstItem="rZV-El-Muz" firstAttribute="centerY" secondItem="7HJ-J6-lP0" secondAttribute="centerY" id="bSt-bl-SMU"/>
+                                        <constraint firstAttribute="trailing" secondItem="rZV-El-Muz" secondAttribute="trailing" constant="16" id="qYA-ht-Uct"/>
+                                        <constraint firstItem="7HJ-J6-lP0" firstAttribute="top" secondItem="dRi-mF-Y0Y" secondAttribute="top" constant="11" id="r6o-rW-7uq"/>
+                                        <constraint firstItem="160-fS-j0N" firstAttribute="top" secondItem="7HJ-J6-lP0" secondAttribute="bottom" constant="6" id="sYf-43-Y6W"/>
+                                        <constraint firstItem="7HJ-J6-lP0" firstAttribute="leading" secondItem="dRi-mF-Y0Y" secondAttribute="leading" constant="16" id="uGn-7o-ZLI"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="additionalInformationLabel" destination="160-fS-j0N" id="gLU-h3-Ugu"/>
+                                    <outlet property="productionYearLabel" destination="rZV-El-Muz" id="ZP2-4o-VL7"/>
+                                    <outlet property="titleLabel" destination="7HJ-J6-lP0" id="olH-YT-ows"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

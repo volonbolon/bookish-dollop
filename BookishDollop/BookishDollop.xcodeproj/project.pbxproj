@@ -19,6 +19,7 @@
 		B018B2A52037035B007C2F3C /* URL+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2A42037035B007C2F3C /* URL+Helpers.swift */; };
 		B018B2A72037054B007C2F3C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2A62037054B007C2F3C /* NetworkManager.swift */; };
 		B018B2AC20370AB1007C2F3C /* FilmsTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2AB20370AB1007C2F3C /* FilmsTableTableViewController.swift */; };
+		B018B2B120370B9C007C2F3C /* FilmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2B020370B9C007C2F3C /* FilmTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		B018B2A42037035B007C2F3C /* URL+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Helpers.swift"; sourceTree = "<group>"; };
 		B018B2A62037054B007C2F3C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		B018B2AB20370AB1007C2F3C /* FilmsTableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsTableTableViewController.swift; sourceTree = "<group>"; };
+		B018B2B020370B9C007C2F3C /* FilmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 		B018B27A2036FFA2007C2F3C /* BookishDollop */ = {
 			isa = PBXGroup;
 			children = (
+				B018B2AF20370B7E007C2F3C /* Views */,
 				B018B2AA20370A84007C2F3C /* ViewControllers */,
 				B018B29F2037008A007C2F3C /* Network Helpers */,
 				B018B27B2036FFA2007C2F3C /* AppDelegate.swift */,
@@ -128,6 +131,14 @@
 				B018B2AB20370AB1007C2F3C /* FilmsTableTableViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B018B2AF20370B7E007C2F3C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B018B2B020370B9C007C2F3C /* FilmTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +270,7 @@
 				B018B27C2036FFA2007C2F3C /* AppDelegate.swift in Sources */,
 				B018B2A1203700AD007C2F3C /* URLSession+NetworkInterface.swift in Sources */,
 				B018B2A3203700C8007C2F3C /* Either.swift in Sources */,
+				B018B2B120370B9C007C2F3C /* FilmTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
