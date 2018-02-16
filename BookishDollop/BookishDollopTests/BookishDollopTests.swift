@@ -19,10 +19,15 @@ class NetworkSessionMock: NetworkSession {
             completionHandler(payload)
             return
         }
+        if let data = self.data {
+            let payload = Either<NetworkControllerError, Data>.right(data)
+            completionHandler(payload)
+            return
+        }
     }
 }
 
-class WizelineChallengeTestTests: XCTestCase {
+class BookishDollopTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
@@ -50,7 +55,33 @@ class WizelineChallengeTestTests: XCTestCase {
                 XCTAssertNotNil(error)
                 exp.fulfill()
             case .right:
+                XCTFail("It should fail")
+            }
+        }
+        self.waitForExpectations(timeout: 10, handler: nil)
+    }
+
+    func testFetchSucceed() {
+        // Composing the fake data
+        let dataString = "{\"data\":[[1,\"E832AF7F-E37B-48E4-8C35-FCDBB9582914\",1,1509143469,\"881420\",1509143469,\"881420\",null,\"180\",\"2011\",\"Epic Roasthouse (399 Embarcadero)\",null,\"SPI Cinemas\",null,\"Jayendra\",\"Umarji Anuradha, Jayendra, Aarthi Sriram, & Suba \",\"Siddarth\",\"Nithya Menon\",\"Priya Anand\"]]}"
+        let data = dataString.data(using: String.Encoding.utf8)
+
+        let exp = expectation(description: "request should fail")
+
+        // Building the mock session
+        let testNetworkSession = NetworkSessionMock()
+        testNetworkSession.data = data
+
+        let networkManager = NetworkManager(session: testNetworkSession)
+
+        networkManager.fetchFilms { (result: Either<NetworkControllerError, NetworkManager.RawFilms>) in
+            switch result {
+            case .left:
                 XCTFail("It should not fail")
+            case .right(let films):
+                XCTAssertNotNil(films)
+                XCTAssertTrue(films.count == 1, "There should be 1 film")
+                exp.fulfill()
             }
         }
         self.waitForExpectations(timeout: 10, handler: nil)
