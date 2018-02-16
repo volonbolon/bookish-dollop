@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B018B27C2036FFA2007C2F3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B27B2036FFA2007C2F3C /* AppDelegate.swift */; };
-		B018B27E2036FFA2007C2F3C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B27D2036FFA2007C2F3C /* ViewController.swift */; };
 		B018B2812036FFA2007C2F3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B018B27F2036FFA2007C2F3C /* Main.storyboard */; };
 		B018B2842036FFA2007C2F3C /* BookishDollop.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B018B2822036FFA2007C2F3C /* BookishDollop.xcdatamodeld */; };
 		B018B2862036FFA2007C2F3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B018B2852036FFA2007C2F3C /* Assets.xcassets */; };
@@ -41,7 +40,6 @@
 /* Begin PBXFileReference section */
 		B018B2782036FFA2007C2F3C /* BookishDollop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookishDollop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B018B27B2036FFA2007C2F3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B018B27D2036FFA2007C2F3C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B018B2802036FFA2007C2F3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B018B2832036FFA2007C2F3C /* BookishDollop.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BookishDollop.xcdatamodel; sourceTree = "<group>"; };
 		B018B2852036FFA2007C2F3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -108,7 +106,6 @@
 				B018B2AA20370A84007C2F3C /* ViewControllers */,
 				B018B29F2037008A007C2F3C /* Network Helpers */,
 				B018B27B2036FFA2007C2F3C /* AppDelegate.swift */,
-				B018B27D2036FFA2007C2F3C /* ViewController.swift */,
 				B018B27F2036FFA2007C2F3C /* Main.storyboard */,
 				B018B2852036FFA2007C2F3C /* Assets.xcassets */,
 				B018B2872036FFA2007C2F3C /* LaunchScreen.storyboard */,
@@ -311,7 +308,6 @@
 				B018B2C220371619007C2F3C /* Film+ManagedObject.swift in Sources */,
 				B018B2842036FFA2007C2F3C /* BookishDollop.xcdatamodeld in Sources */,
 				B018B2A52037035B007C2F3C /* URL+Helpers.swift in Sources */,
-				B018B27E2036FFA2007C2F3C /* ViewController.swift in Sources */,
 				B018B2A72037054B007C2F3C /* NetworkManager.swift in Sources */,
 				B018B2B82037105A007C2F3C /* Film+CoreDataClass.swift in Sources */,
 				B018B27C2036FFA2007C2F3C /* AppDelegate.swift in Sources */,
