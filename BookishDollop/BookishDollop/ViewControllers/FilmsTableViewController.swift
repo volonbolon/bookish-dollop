@@ -7,8 +7,28 @@
 //
 
 import UIKit
+import CoreData
 
-class FilmsTableTableViewController: UITableViewController {
+class FilmsTableViewController: UITableViewController {
+    enum SortBy: Int {
+        case title
+        case director
+        case yearOfProduction
+    }
+
+    // MARK: - IBOutlets
+    @IBOutlet var sortBySegmentedController: UISegmentedControl!
+
+    // MARK: - IBActions
+    @IBAction func sortedByValueChanged(_ sender: UISegmentedControl) {
+        if let sortBy = SortBy(rawValue: sender.selectedSegmentIndex) {
+            self.configureFetchedResultsController(sortBy: sortBy)
+        }
+    }
+
+    // MARK: - Privates
+    fileprivate let networkManager = NetworkManager()
+    fileprivate var fetchedResultsController: NSFetchedResultsController<Film>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,4 +112,53 @@ class FilmsTableTableViewController: UITableViewController {
     }
     */
 
+}
+
+extension FilmsTableViewController { // Helpers
+    fileprivate func configureFetchedResultsController(sortBy: SortBy) {
+        var fetchRequest: NSFetchRequest<Film>
+        var cacheName: String
+        switch sortBy {
+        case .director:
+            cacheName = "director"
+            fetchRequest = Film.sortedByDirectorFetchRequest
+        case .title:
+            cacheName = "title"
+            fetchRequest = Film.sortedByTitleFetchRequest
+        case .yearOfProduction:
+            cacheName = "year"
+            fetchRequest = Film.sortedByProductionYearFetchRequest
+        }
+
+        // We need to clean the cache, otherwise, fetchedResultsController
+        // will fail to retrieve the correct object
+        NSFetchedResultsController<Film>.deleteCache(withName: cacheName)
+
+        // If the AppDelegate is not `appDelegate` then, we have a real problem.
+        // Let's crash inmediatly
+        // swiftlint:disable:next force_cast
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let persistentContainer = appDelegate.persistentContainer
+        let context = persistentContainer.viewContext
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: cacheName)
+        fetchedResultsController.delegate = self
+
+        self.fetchedResultsController = fetchedResultsController
+        do {
+            try fetchedResultsController.performFetch()
+            self.tableView.reloadData()
+        } catch {
+            print(error)
+        }
+    }
+}
+
+extension FilmsTableViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.tableView.beginUpdates()
+    }
+
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.tableView.endUpdates()
+    }
 }
