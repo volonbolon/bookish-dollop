@@ -33,74 +33,25 @@ class FilmsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        let sortBy = SortBy(rawValue: self.sortBySegmentedController.selectedSegmentIndex)!
+        self.configureFetchedResultsController(sortBy: sortBy)
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.networkManager.fetchFilms { (result: Either<NetworkControllerError, NetworkManager.RawFilms>) in
+            switch result {
+            case .left(let error):
+                print(error)
+            case .right(let rawFilms):
+                DispatchQueue.main.async {
+                    self.refreshDatabase(rawFilms: rawFilms)
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     /*
     // MARK: - Navigation
@@ -150,6 +101,54 @@ extension FilmsTableViewController { // Helpers
         } catch {
             print(error)
         }
+    }
+
+    func refreshDatabase(rawFilms: NetworkManager.RawFilms) {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            let container = appDelegate.persistentContainer
+            Film.insertInBulk(rawObjects: rawFilms, container: container, completionBlock: { (success: Bool) in
+                if success {
+                    do {
+                        try self.fetchedResultsController.performFetch()
+                        self.tableView.reloadData()
+                    } catch {
+                        let fetchError = error as NSError
+                        print("Unable to Perform Fetch Request")
+                        print("\(fetchError), \(fetchError.localizedDescription)")
+                    }
+                }
+            })
+        }
+    }
+}
+
+extension FilmsTableViewController { // MARK: - UITableViewDatasource
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        guard let numberOfSections = self.fetchedResultsController.sections?.count else {
+            return 0
+        }
+        return numberOfSections
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let films = self.fetchedResultsController.fetchedObjects else {
+            return 0
+        }
+        let numberOfRowsInSection = films.count
+        return numberOfRowsInSection
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // swiftlint:disable:next force_cast
+        let cell = tableView.dequeueReusableCell(withIdentifier: "filmCellIdentifier", for: indexPath) as! FilmTableViewCell
+
+        let film = self.fetchedResultsController.object(at: indexPath)
+
+        cell.titleLabel.text = film.title
+        cell.additionalInformationLabel.text = film.director
+        cell.productionYearLabel.text = film.year
+
+        return cell
     }
 }
 

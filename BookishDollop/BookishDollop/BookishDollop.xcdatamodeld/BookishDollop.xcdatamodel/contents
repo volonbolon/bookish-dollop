@@ -4,7 +4,7 @@
         <attribute name="cast" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="director" attributeType="String" syncable="YES"/>
         <attribute name="lastTouched" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="theaters" attributeType="String" syncable="YES"/>
+        <attribute name="theaters" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="year" attributeType="String" syncable="YES"/>
     </entity>
