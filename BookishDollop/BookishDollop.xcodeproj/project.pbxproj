@@ -23,6 +23,8 @@
 		B018B2B120370B9C007C2F3C /* FilmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2B020370B9C007C2F3C /* FilmTableViewCell.swift */; };
 		B018B2B82037105A007C2F3C /* Film+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2B62037105A007C2F3C /* Film+CoreDataClass.swift */; };
 		B018B2B92037105A007C2F3C /* Film+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2B72037105A007C2F3C /* Film+CoreDataProperties.swift */; };
+		B018B2BD20371138007C2F3C /* NSManagedObjectContext+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2BC20371138007C2F3C /* NSManagedObjectContext+Helpers.swift */; };
+		B018B2BF20371171007C2F3C /* ManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2BE20371171007C2F3C /* ManagedObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,8 +56,10 @@
 		B018B2AB20370AB1007C2F3C /* FilmsTableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsTableTableViewController.swift; sourceTree = "<group>"; };
 		B018B2AD20370B64007C2F3C /* MapViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewViewController.swift; sourceTree = "<group>"; };
 		B018B2B020370B9C007C2F3C /* FilmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmTableViewCell.swift; sourceTree = "<group>"; };
-		B018B2B62037105A007C2F3C /* Film+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Film+CoreDataClass.swift"; path = "BookishDollop/Models/Film+CoreDataClass.swift"; sourceTree = "<group>"; };
-		B018B2B72037105A007C2F3C /* Film+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Film+CoreDataProperties.swift"; path = "BookishDollop/Models/Film+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B018B2B62037105A007C2F3C /* Film+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Film+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B018B2B72037105A007C2F3C /* Film+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Film+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B018B2BC20371138007C2F3C /* NSManagedObjectContext+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Helpers.swift"; sourceTree = "<group>"; };
+		B018B2BE20371171007C2F3C /* ManagedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,8 +83,6 @@
 		B018B26F2036FFA2007C2F3C = {
 			isa = PBXGroup;
 			children = (
-				B018B2B62037105A007C2F3C /* Film+CoreDataClass.swift */,
-				B018B2B72037105A007C2F3C /* Film+CoreDataProperties.swift */,
 				B018B27A2036FFA2007C2F3C /* BookishDollop */,
 				B018B2922036FFA2007C2F3C /* BookishDollopTests */,
 				B018B2792036FFA2007C2F3C /* Products */,
@@ -99,6 +101,7 @@
 		B018B27A2036FFA2007C2F3C /* BookishDollop */ = {
 			isa = PBXGroup;
 			children = (
+				B018B2BA203710DD007C2F3C /* Models */,
 				B018B2AF20370B7E007C2F3C /* Views */,
 				B018B2AA20370A84007C2F3C /* ViewControllers */,
 				B018B29F2037008A007C2F3C /* Network Helpers */,
@@ -148,6 +151,26 @@
 				B018B2B020370B9C007C2F3C /* FilmTableViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		B018B2BA203710DD007C2F3C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B018B2BB2037112A007C2F3C /* Helpers */,
+				B018B2B62037105A007C2F3C /* Film+CoreDataClass.swift */,
+				B018B2B72037105A007C2F3C /* Film+CoreDataProperties.swift */,
+			);
+			name = Models;
+			path = ../Models;
+			sourceTree = "<group>";
+		};
+		B018B2BB2037112A007C2F3C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B018B2BC20371138007C2F3C /* NSManagedObjectContext+Helpers.swift */,
+				B018B2BE20371171007C2F3C /* ManagedObject.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B018B2BF20371171007C2F3C /* ManagedObject.swift in Sources */,
 				B018B2AE20370B64007C2F3C /* MapViewViewController.swift in Sources */,
 				B018B2AC20370AB1007C2F3C /* FilmsTableTableViewController.swift in Sources */,
 				B018B2842036FFA2007C2F3C /* BookishDollop.xcdatamodeld in Sources */,
@@ -279,6 +303,7 @@
 				B018B2A72037054B007C2F3C /* NetworkManager.swift in Sources */,
 				B018B2B82037105A007C2F3C /* Film+CoreDataClass.swift in Sources */,
 				B018B27C2036FFA2007C2F3C /* AppDelegate.swift in Sources */,
+				B018B2BD20371138007C2F3C /* NSManagedObjectContext+Helpers.swift in Sources */,
 				B018B2A1203700AD007C2F3C /* URLSession+NetworkInterface.swift in Sources */,
 				B018B2A3203700C8007C2F3C /* Either.swift in Sources */,
 				B018B2B120370B9C007C2F3C /* FilmTableViewCell.swift in Sources */,
