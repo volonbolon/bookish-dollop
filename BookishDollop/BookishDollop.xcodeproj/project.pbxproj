@@ -14,6 +14,8 @@
 		B018B2862036FFA2007C2F3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B018B2852036FFA2007C2F3C /* Assets.xcassets */; };
 		B018B2892036FFA2007C2F3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B018B2872036FFA2007C2F3C /* LaunchScreen.storyboard */; };
 		B018B2942036FFA2007C2F3C /* BookishDollopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2932036FFA2007C2F3C /* BookishDollopTests.swift */; };
+		B018B2A1203700AD007C2F3C /* URLSession+NetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2A0203700AD007C2F3C /* URLSession+NetworkInterface.swift */; };
+		B018B2A3203700C8007C2F3C /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018B2A2203700C8007C2F3C /* Either.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		B018B28F2036FFA2007C2F3C /* BookishDollopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookishDollopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B018B2932036FFA2007C2F3C /* BookishDollopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookishDollopTests.swift; sourceTree = "<group>"; };
 		B018B2952036FFA2007C2F3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B018B2A0203700AD007C2F3C /* URLSession+NetworkInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+NetworkInterface.swift"; sourceTree = "<group>"; };
+		B018B2A2203700C8007C2F3C /* Either.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Either.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,7 @@
 		B018B27A2036FFA2007C2F3C /* BookishDollop */ = {
 			isa = PBXGroup;
 			children = (
+				B018B29F2037008A007C2F3C /* Network Helpers */,
 				B018B27B2036FFA2007C2F3C /* AppDelegate.swift */,
 				B018B27D2036FFA2007C2F3C /* ViewController.swift */,
 				B018B27F2036FFA2007C2F3C /* Main.storyboard */,
@@ -97,6 +102,15 @@
 				B018B2952036FFA2007C2F3C /* Info.plist */,
 			);
 			path = BookishDollopTests;
+			sourceTree = "<group>";
+		};
+		B018B29F2037008A007C2F3C /* Network Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B018B2A0203700AD007C2F3C /* URLSession+NetworkInterface.swift */,
+				B018B2A2203700C8007C2F3C /* Either.swift */,
+			);
+			path = "Network Helpers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +237,8 @@
 				B018B2842036FFA2007C2F3C /* BookishDollop.xcdatamodeld in Sources */,
 				B018B27E2036FFA2007C2F3C /* ViewController.swift in Sources */,
 				B018B27C2036FFA2007C2F3C /* AppDelegate.swift in Sources */,
+				B018B2A1203700AD007C2F3C /* URLSession+NetworkInterface.swift in Sources */,
+				B018B2A3203700C8007C2F3C /* Either.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
