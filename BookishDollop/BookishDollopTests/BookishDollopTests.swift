@@ -9,7 +9,20 @@
 import XCTest
 @testable import BookishDollop
 
-class BookishDollopTests: XCTestCase {
+class NetworkSessionMock: NetworkSession {
+    var data: Data?
+    var error: NetworkControllerError?
+
+    func fetch(request: URLRequest, completionHandler: @escaping NetworkSession.FetchCompletionHandler) {
+        if let error = self.error {
+            let payload = Either<NetworkControllerError, Data>.left(error)
+            completionHandler(payload)
+            return
+        }
+    }
+}
+
+class WizelineChallengeTestTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
@@ -21,16 +34,25 @@ class BookishDollopTests: XCTestCase {
         super.tearDown()
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+    func testFetchShouldFail() {
+        let exp = expectation(description: "request should fail")
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        let testNetworkSession = NetworkSessionMock()
+        let error = NetworkControllerError.invalidURL("This is not a URL")
+        testNetworkSession.error = error
+
+        // By injecting a custom session, we can easily test different network scenarios
+        let networkManager = NetworkManager(session: testNetworkSession)
+
+        networkManager.fetchFilms { (result: Either<NetworkControllerError, NetworkManager.RawFilms>) in
+            switch result {
+            case .left(let error):
+                XCTAssertNotNil(error)
+                exp.fulfill()
+            case .right:
+                XCTFail("It should not fail")
+            }
         }
+        self.waitForExpectations(timeout: 10, handler: nil)
     }
-
 }
